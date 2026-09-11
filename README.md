@@ -1,4 +1,4 @@
-# Biotopflächenfaktor Calculator
+# Biotope area factor Calculator
 
 The **Biotopflächenfaktor (BAF) Calculator** is a VC Map plugin for evaluating the ecological quality of selected planning areas. It calculates the area, weighted biotope area, and resulting BAF for polygon features, groups the results by surface type, and presents them in a result table.
 
