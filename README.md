@@ -1,10 +1,45 @@
-# Biotope area factor Calculator
+# Biotope Area Factor Calculator
 
-The **Biotopflächenfaktor (BAF) Calculator** is a VC Map plugin for evaluating the ecological quality of selected planning areas. It calculates the area, weighted biotope area, and resulting BAF for polygon features, groups the results by surface type, and presents them in a result table.
+**Provided by:** VC Map Project (virtualcitySYSTEMS)
+
+## Description
+
+The Biotope Area Factor (BAF) Calculator is a VC Map plugin for evaluating the ecological quality of selected planning areas. It calculates polygon areas, weighted biotope areas, and the resulting BAF; groups results by surface type; and presents them in a result table.
 
 The plugin is part of the [VC Map Project](https://github.com/virtualcitySYSTEMS/map-ui).
 
-## Features
+## Installation Prerequisites
+
+- [VC Map UI 6](https://github.com/virtualcitySYSTEMS/map-ui)
+- VC Map Core with Cesium and OpenLayers
+- **Optional:** MinIO Console API access for file uploads
+- **Optional:** IDRA/DCAT-AP catalogue API access for catalogue registration
+- Node.js and npm for development; the required versions are not specified in the provided documentation
+
+## Installation Instructions
+
+Production deployment instructions were not included in the provided documentation. For local development and build commands, see [Development](#development).
+
+## Built Image Registry
+
+Not specified in the provided documentation.
+
+## License
+
+Not specified in the provided documentation.
+
+## External technical resources
+
+- [VC Map UI](https://github.com/virtualcitySYSTEMS/map-ui)
+
+## User Guide References
+
+- *Calculating the Biotope Area Factor* — URL not provided
+- *BAF calculation examples* — URL not provided
+
+## Additional Information
+
+### Features
 
 - Calculate weighted biotope areas and the resulting BAF.
 - Process selected planning layers from an active planning context.
@@ -14,7 +49,7 @@ The plugin is part of the [VC Map Project](https://github.com/virtualcitySYSTEMS
 - Optionally upload PDF, JSON, CSV, and GeoJSON analysis files to MinIO.
 - Optionally register uploaded results as an IDRA/DCAT-AP catalogue dataset.
 
-## Typical Workflow
+### Typical Workflow
 
 1. Open a planning area in VC Map.
 2. Select the planning layers to include, or use all available planning layers.
@@ -23,44 +58,39 @@ The plugin is part of the [VC Map Project](https://github.com/virtualcitySYSTEMS
 5. Export the result as a PDF report.
 6. Optionally upload the analysis files and register the dataset in a catalogue.
 
-## Required Data
+### Required Data
 
 The calculation expects polygon features in VC Map planning layers. Each feature must provide:
 
 - `metadata.baf_weight`: numeric BAF weighting value.
-- `metadata.greenType`: surface type used for grouping results.
+- `metadata.greenType`: surface type used to group results.
 - `metadata.key`: surface-type key.
 
 Features without `metadata.baf_weight` are skipped. The plugin currently processes polygon geometries only.
 
-## Optional Inputs
+### Optional Inputs
 
 - `selected_layer_names`: planning layers to process. By default, all discovered layers are used.
-- `upload_suffix`: suffix for uploaded file names and folders. The default is `Baseline`.
-- `minio_endpoint`: MinIO proxy endpoint. The default is `https://urbreath.virtualcitymap.de/minioproxy`.
-- `minio_bucket_name`: MinIO bucket. The default is `vcs-analysis`.
-- `catalogue_endpoint`: endpoint used for optional catalogue registration.
+- `upload_suffix`: suffix for uploaded file names and folders. Defaults to `Baseline`.
+- `minio_endpoint`: MinIO proxy endpoint. Defaults to `https://urbreath.virtualcitymap.de/minioproxy`.
+- `minio_bucket_name`: MinIO bucket. Defaults to `vcs-analysis`.
+- `catalogue_endpoint`: endpoint used for optional catalogue registration. No default was specified.
 
-## Outputs
+### Outputs
 
-- **BAF result table**: aggregated area, weight, biotope area, and overall BAF.
-- **PDF report**: multi-page report with a map screenshot and result table.
-- **Analysis summary**: optional JSON and semicolon-separated CSV exports.
-- **BAF GeoJSON**: optional GeoJSON `FeatureCollection` containing analysed polygons and result attributes.
-- **Catalogue dataset**: optional catalogue registration with described distributions.
+- **BAF result table:** aggregated area, weight, biotope area, and overall BAF.
+- **PDF report:** multi-page report with a map screenshot and result table.
+- **Analysis summary:** optional JSON and semicolon-separated CSV exports.
+- **BAF GeoJSON:** optional GeoJSON FeatureCollection containing analysed polygons and result attributes.
+- **Catalogue dataset:** optional catalogue registration with described distributions.
 
-## Supported Scope
+### Supported Scope
 
-The plugin is intended for:
+The plugin is intended for municipalities, urban planners, landscape planners, and environmental assessors. It can be used at site, block, neighbourhood, and district scale.
 
-- Municipalities
-- Urban planners
-- Landscape planners
-- Environmental assessors
+Relevant climate-adaptation topics include urban greening, soil sealing, biodiversity, rainwater infiltration, green roofs, and climate adaptation.
 
-It can be used at site, block, neighbourhood, and district scale. Relevant climate-adaptation topics include urban greening, soil sealing, biodiversity, rainwater infiltration, green roofs, and climate adaptation.
-
-## Limitations
+### Limitations
 
 - Only polygon geometries are included in the calculation.
 - Features without `metadata.baf_weight` are skipped.
@@ -74,14 +104,7 @@ It can be used at site, block, neighbourhood, and district scale. Relevant clima
 - It is not intended for lines, points, multipolygon geometries, or large-scale ecosystem modelling.
 - Results are not a legally binding assessment without expert review of the input data and weighting values.
 
-## Requirements
-
-- [VC Map UI 6](https://github.com/virtualcitySYSTEMS/map-ui)
-- VC Map Core with Cesium and OpenLayers
-- MinIO Console API for optional file uploads
-- IDRA/DCAT-AP catalogue API for optional catalogue registration
-
-## Development
+### Development
 
 Install dependencies:
 
@@ -120,13 +143,8 @@ Create a production bundle:
 npm run bundle
 ```
 
-## Project Information
+### Project Information
 
-- Plugin ID: `baf-calculator`
-- Version: `1.0.0`
-- Maturity: Beta
-
-## Further Reading
-
-- [Calculating the Biotope Area Factor](https://www.berlin.de/sen/uvk/en/nature-and-green/landscape-planning/baf-biotope-area-factor/calculating-the-baf/)
-- [BAF calculation examples](https://www.berlin.de/sen/uvk/en/nature-and-green/landscape-planning/baf-biotope-area-factor/calculation-examples/)
+- **Plugin ID:** `baf-calculator`
+- **Version:** `1.0.0`
+- **Maturity:** Beta
